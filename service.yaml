@@ -1,0 +1,38 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: existing
+  namespace: default
+spec:
+  handle: lukasz
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GitRepository
+metadata:
+  name: simple-helm
+  namespace: default
+spec:
+  url: https://github.com/zreigz/simple-helm.git
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: helm-app
+  namespace: default
+spec:
+  namespace: helm-app
+  name: helm-app
+  repositoryRef:
+    kind: GitRepository
+    name: simple-helm
+    namespace: default
+  git:
+    ref: main
+    folder: /
+  helm:
+    values:
+      image:
+        tag: 1.28.0
+  clusterRef:
+    name: existing
+    namespace: default
