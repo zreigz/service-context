@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/part-of: controller
     app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/created-by: controller
-  name: servicecontext-sample
+  name: helm-app
   namespace: default
 spec:
   configuration:
