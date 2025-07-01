@@ -20,8 +20,6 @@ metadata:
   name: helm-app
   namespace: default
 spec:
-  contexts:
-    - helm-app
   namespace: helm-app
   name: helm-app
   repositoryRef:
@@ -41,10 +39,6 @@ spec:
       local files = fs.walk("templates")
       local yamlStr = fs.read("values.yaml")
       local yamlData = encoding.yamlDecode(yamlStr)
-
-    values:
-      image:
-        tag: 1.28.0
   clusterRef:
     name: existing
     namespace: default
