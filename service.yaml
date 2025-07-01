@@ -36,19 +36,10 @@ spec:
       
       values["replicaCount"] = 1
       
-      local files = fs.walk(".")
-      for i, file in ipairs(files) do
-        print("Hello, " .. filename .. "!")
-        local file = io.open(filename, "r")
-        if file then
-          local content = file:read("*all")
-          file:close()
-          print("File contents:")
-          print(content)
-       else
-          print("Failed to open file: " .. filename)
-        end
-      end
+      local files = fs.walk("templates")
+      local yamlStr = fs.read("values.yaml")
+      local yamlData = encoding.yamlDecode(yamlStr)
+
     values:
       image:
         tag: 1.28.0
