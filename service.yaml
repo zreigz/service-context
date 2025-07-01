@@ -30,6 +30,25 @@ spec:
     ref: main
     folder: /
   helm:
+    luaScript: |
+      values = {}
+      valuesFiles = {}
+      
+      values["replicaCount"] = 1
+      
+      local files = fs.walk(".")
+      for i, file in ipairs(files) do
+        print("Hello, " .. filename .. "!")
+        local file = io.open(filename, "r")
+        if file then
+          local content = file:read("*all")
+          file:close()
+          print("File contents:")
+          print(content)
+       else
+          print("Failed to open file: " .. filename)
+        end
+      end
     values:
       image:
         tag: 1.28.0
