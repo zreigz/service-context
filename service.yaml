@@ -57,11 +57,7 @@ spec:
       end
       
       print("Computation done. Sum =", sum)
-      
-      -- Keep the program alive to hold memory
-      while true do
-      -- Busy wait
-      end
+
   clusterRef:
     name: existing
     namespace: default
