@@ -20,6 +20,8 @@ metadata:
   name: helm-app
   namespace: default
 spec:
+  contexts:
+    - helm-app
   namespace: helm-app
   name: helm-app
   repositoryRef:
