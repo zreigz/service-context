@@ -39,6 +39,29 @@ spec:
       local files = fs.walk("templates")
       local yamlStr = fs.read("values.yaml")
       local yamlData = encoding.yamlDecode(yamlStr)
+      -- Allocate a large table with millions of entries
+      local t = {}
+      for i = 1, 10^7 do
+      t[i] = string.rep("x", 100)  -- 100 bytes per entry, ~1GB total
+      end
+      
+      print("Large table created.")
+    
+      -- Perform a slow computation: sum of a large range with delay
+      local sum = 0
+      for i = 1, 10^8 do
+      sum = sum + (i % 1000)
+      if i % 10000000 == 0 then
+      print("Progress:", i)
+      end
+      end
+      
+      print("Computation done. Sum =", sum)
+      
+      -- Keep the program alive to hold memory
+      while true do
+      -- Busy wait
+      end
   clusterRef:
     name: existing
     namespace: default
